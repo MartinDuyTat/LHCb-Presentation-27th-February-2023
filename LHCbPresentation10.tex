@@ -1,0 +1,260 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Overleaf (WriteLaTeX) Example: Molecular Chemistry Presentation
+%
+% Source: http://www.overleaf.com
+%
+% In these slides we show how Overleaf can be used with standard 
+% chemistry packages to easily create professional presentations.
+% 
+% Feel free to distribute this example, but please keep the referral
+% to overleaf.com
+% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass{beamer}
+
+\mode<presentation>
+{
+  \usetheme{Madrid}       % or try default, Darmstadt, Warsaw, ...
+  \usecolortheme{default} % or try albatross, beaver, crane, ...
+  \usefonttheme{default}    % or try default, structurebold, ...
+  \setbeamertemplate{navigation symbols}{}
+  \setbeamertemplate{caption}[numbered]
+} 
+
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage{graphicx}
+\usepackage{hyperref}
+  \hypersetup{colorlinks=true}
+  \hypersetup{urlcolor=blue}
+  \hypersetup{linkcolor = .}
+\usepackage{xcolor}
+\usepackage{siunitx}
+  \sisetup{separate-uncertainty = true}
+\usepackage{physics}
+\usepackage[font=small,labelfont=bf,justification=centering]{caption}
+\usepackage{subcaption}
+\usepackage[en-GB]{datetime2}
+\usepackage{overpic}
+\usepackage{feynmp}
+\DeclareGraphicsRule{*}{mps}{*}{}
+\usepackage{scalerel}
+\newcommand{\mylbrace}[2]{\vspace{#2pt}\hspace{6pt}\scaleleftright[\dimexpr5pt+#1\dimexpr0.06pt]{\lbrace}{\rule[\dimexpr2pt-#1\dimexpr0.5pt]{-4pt}{#1pt}}{.}}
+\newcommand{\myrbrace}[2]{\vspace{#2pt}\scaleleftright[\dimexpr5pt+#1\dimexpr0.06pt]{.}{\rule[\dimexpr2pt-#1\dimexpr0.5pt]{-4pt}{#1pt}}{\rbrace}\hspace{6pt}}
+\usepackage{ulem} % Line across text
+
+% Here's where the presentation starts, with the info for the title slide
+\title[$K^+K^-\pi^+\pi^-$]{\texorpdfstring{$D\to K^+K^-\pi^+\pi^-$}{K+K-pi+pi-} strong phase analysis at BESIII}
+
+\author{Martin Tat}
+\institute{Oxford LHCb}
+\date{27th February 2023}
+
+\titlegraphic{\includegraphics[height = 2cm]{lhcb.jpg}\hspace{1cm}~%
+              \includegraphics[height = 2cm]{OxfordLogo.pdf}\hspace{1cm}~%
+              \includegraphics[height = 2cm]{bes3.jpg}}
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+% These three lines create an automatically generated table of contents.
+%\begin{frame}{Outline}
+%  \tableofcontents
+%\end{frame}
+
+\section{Recap of BESIII analysis}
+
+\begin{frame}{Recap of BESIII analysis}
+  \begin{center}
+    \Large{Analysis of $D^0\to K^+K^-\pi^+\pi^-$}
+  \end{center}
+  \vspace{0.5cm}
+  \begin{itemize}
+    \setlength\itemsep{1.0em}
+    \item{Study $D^0$-$\bar{D^0}$ strong phase difference in bins of the 5D phase space}
+    \item{Measurement of amplitude averaged strong phases $c_i$ and $s_i$}
+    \item{$c_i$ and $s_i$ are important inputs to the $\gamma$ measurement at LHCb}
+    \begin{itemize}
+      \item{LHCb result: $\gamma = (116^{+12}_{-14})^\circ$ with model dependent inputs}
+      \item{$\gamma$ may change when updated with model independent $c_i$ and $s_i$}
+    \end{itemize}
+    \item{Measurement technique unique to charm factories: Study decays of quantum correlated $D\bar{D}$ pairs using a double tag method}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Recap of BESIII analysis}
+  \begin{itemize}
+    \item{$\psi(3770)\to D^0\bar{D^0}$ decay conserves $\mathcal{C} = -1$}
+  \end{itemize}
+  \begin{figure}[H]
+    \centering
+    \vspace{-1.5cm}
+    \begin{fmffile}{fgraph/fgraph_ee1}
+      \setlength{\unitlength}{1cm}
+      \begin{fmfgraph*}(8,5)
+        \fmfleft{i}
+        \fmfright{o}
+        \fmflabel{$D^0$}{i}
+        \fmflabel{$\bar{D^0}$}{o}
+        \fmf{fermion}{w,i}
+        \fmf{fermion}{w,o}
+        \fmfblob{1cm}{w}
+        \fmfv{label=$\psi(3770)$,label.dist=15,label.angle=90}{w}
+      \end{fmfgraph*}
+    \end{fmffile}
+    \vspace{-2.0cm}
+  \end{figure}
+  \begin{itemize}
+    \item{But since they are quantum correlated, we must consider their CP eigenstates $D_\pm = (\lvert D^0\rangle\pm\lvert\bar{D^0}\rangle)/\sqrt{2}$}
+    \item{Total wavefunction is $\lvert D^0\rangle\lvert\bar{D^0}\rangle - \lvert\bar{D^0}\rangle\lvert D^0\rangle = \lvert D_+\rangle\lvert D_-\rangle + \lvert D_-\rangle\lvert D_+\rangle$}
+  \end{itemize}
+  \begin{figure}[H]
+    \centering
+    \vspace{-1.5cm}
+    \begin{fmffile}{fgraph/fgraph_ee2}
+      \setlength{\unitlength}{1cm}
+      \begin{fmfgraph*}(8,5)
+        \fmfleft{i}
+        \fmfright{o}
+        \fmflabel{$D_+$}{i}
+        \fmflabel{$D_-$}{o}
+        \fmf{fermion}{w,i}
+        \fmf{fermion}{w,o}
+        \fmfblob{1cm}{w}
+        \fmfv{label=$\psi(3770)$,label.dist=15,label.angle=90}{w}
+      \end{fmfgraph*}
+    \end{fmffile}
+    \vspace{-2.0cm}
+  \end{figure}
+  \begin{center}
+    The two $D$ mesons do \underline{not} communicate, but the $D\to KK\pi\pi$ decay is perfectly correlated with the tagged $D$
+  \end{center}
+\end{frame}
+
+\begin{frame}{Strong-phases in quantum correlated $D^0\bar{D^0}$ decays}
+  \begin{itemize}
+    \item{Tag mode can be a \underline{CP even tag}}
+    \begin{itemize}
+      \item{$KK$, $\pi\pi$, $\pi\pi\pi^0$, $K_S\pi^0\pi^0$, $K_L\pi^0$, $K_L\omega$}
+    \end{itemize}
+  \end{itemize}
+  \begin{figure}[H]
+    \centering
+    \vspace{0.3cm}
+    \begin{fmffile}{fgraph/fgraph_CPeven_tag}
+      \setlength{\unitlength}{1cm}
+      \begin{fmfgraph*}(8,4)
+        \fmfstraight
+        \fmfleft{i4,i3,i2,i1}
+        \fmfright{g1,o1,o2,g2}
+        \fmflabel{$K^+$}{o1}
+        \fmflabel{$K^-$}{o2}
+        \fmflabel{$K^+$}{i1}
+        \fmflabel{$K^-$}{i2}
+        \fmflabel{$\pi^+$}{i3}
+        \fmflabel{$\pi^-$}{i4}
+        \fmf{fermion}{w,i1}
+        \fmf{fermion}{w,i2}
+        \fmf{fermion}{w,i3}
+        \fmf{fermion}{w,i4}
+        \fmf{fermion}{w,o1}
+        \fmf{fermion}{w,o2}
+        \fmf{phantom}{w,g1}
+        \fmf{phantom}{w,g2}
+        \fmfblob{1cm}{w}
+      \end{fmfgraph*}
+    \end{fmffile}
+    \vspace{0.3cm}
+  \end{figure}
+  \begin{center}
+    $D\to K^+K^-$, which is $C\!P$ even, forces $D\to K^+K^-\pi^+\pi^-$ to be $C\!P$ odd
+  \end{center}
+\end{frame}
+
+\begin{frame}{Strong-phase in quantum correlated $D^0\bar{D^0}$ decays}
+  \begin{itemize}
+    \item{Tag mode can be a \underline{CP odd tag}}
+    \begin{itemize}
+      \item{$K_S\pi^0$, $K_S\omega$, $K_S\eta$, $K_S\eta'$, $K_L\pi^0\pi^0$}
+    \end{itemize}
+  \end{itemize}
+  \begin{figure}[H]
+    \centering
+    \vspace{0.3cm}
+    \begin{fmffile}{fgraph/fgraph_CPodd_tag}
+      \setlength{\unitlength}{1cm}
+      \begin{fmfgraph*}(8,4)
+        \fmfstraight
+        \fmfleft{i4,i3,i2,i1}
+        \fmfright{g1,o1,o2,g2}
+        \fmflabel{$\pi^0$}{o1}
+        \fmflabel{$K_S$}{o2}
+        \fmflabel{$K^+$}{i1}
+        \fmflabel{$K^-$}{i2}
+        \fmflabel{$\pi^+$}{i3}
+        \fmflabel{$\pi^-$}{i4}
+        \fmf{fermion}{w,i1}
+        \fmf{fermion}{w,i2}
+        \fmf{fermion}{w,i3}
+        \fmf{fermion}{w,i4}
+        \fmf{fermion}{w,o1}
+        \fmf{fermion}{w,o2}
+        \fmf{phantom}{w,g1}
+        \fmf{phantom}{w,g2}
+        \fmfblob{1cm}{w}
+      \end{fmfgraph*}
+    \end{fmffile}
+    \vspace{0.3cm}
+  \end{figure}
+  \begin{center}
+    $D\to K_S^0\pi^0$, which is $C\!P$ odd, forces $D\to K^+K^-\pi^+\pi^-$ to be $C\!P$ even
+  \end{center}
+\end{frame}
+
+\begin{frame}{Fit yield of some CP tags}
+  \begin{center}
+    Do simultaneous double tag yield fit of CP tags
+  \end{center}
+  \begin{figure}
+    \centering
+    \begin{subfigure}{0.49\textwidth}
+      \includegraphics[width = 1.0\textwidth, trim = {0 14cm 0 0}, clip = true]{example-image-a}
+      \caption{$10.2^{+6.7}_{-3.9}$}
+    \end{subfigure}%
+    \begin{subfigure}{0.49\textwidth}
+      \includegraphics[width = 1.0\textwidth, trim = {0 14cm 0 0}, clip = true]{example-image-a}
+      \caption{$14.4^{+4.8}_{-4.1}$}
+    \end{subfigure}
+    \caption{$KK\pi\pi$ vs $KK$}
+  \end{figure}
+\end{frame}
+
+\begin{frame}{Summary and next steps}
+  \begin{itemize}
+    \setlength\itemsep{0.8em}
+    \item{BESIII measurement of $c_i$ and $s_i$ is progressing well}
+    \item{A partially reconstructed $D\to KK\pi\pi$ method has been tested, but there were some challenges with large $D\to K\pi\pi\pi\pi^0$ backgrounds}
+    \item{The preliminary fit of $c_i$ and $s_i$ shows promising results}
+    \begin{itemize}
+      \item{A method for direct DCS decay corrections is working well}
+      \item{Results of $c_i$ agree with the $F_+$ measurement}
+      \item{$s_i$ shows tensions with the LHCb model}
+    \end{itemize}
+    \item{Next steps:}
+    \begin{enumerate}
+      \item{Finish calculation of peaking backgrounds in each bin}
+      \item{Reprocess all data and generate new MC once new data is available}
+      \item{Add the rest of the tags}
+      \item{Charm WG review}
+    \end{enumerate}
+  \end{itemize}
+  \begin{center}
+    \huge Thank you for listening!
+  \end{center}
+\end{frame}
+
+\end{document}

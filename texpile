@@ -1,0 +1,13 @@
+#!/bin/bash
+f=LHCbPresentation10
+if pdflatex $f.tex
+then
+  cd fgraph
+  MPFILES=`ls *.mp`
+  for MP in ${MPFILES}; do
+    mpost ${MP}
+  done
+  cd ..
+  pdflatex $f.tex
+  rm $f.{aux,log,nav,out,snm,toc}
+fi
